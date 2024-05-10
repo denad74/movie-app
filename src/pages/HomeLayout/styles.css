@@ -1,0 +1,26 @@
+.container {
+  width: var(--fluid-width);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.home-header {
+  padding: 10px 0;
+}
+
+.home-header__buttons {
+    display: flex;
+}
+
+.link {
+  border: 1px solid green;
+  padding: 8px 16px;
+  color: green;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.active {
+  background-color: #999;
+  color: #fff;
+}

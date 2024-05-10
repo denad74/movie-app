@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomeLayout from './pages/HomeLayout';
+import Error from './pages/Error';
+import MoviesDetails from './pages/MoviesDetails';
+import TvShows from './pages/TvShows';
+import Movies from './pages/Movies';
+import TvShowsDetails from './pages/TvShowsDetails';
+import { TabContextProvider } from './context/TabContext';
+// import { SearchProvider } from './context/SearchContext';
 
-function App() {
+const queryClient = new QueryClient();
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomeLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <TvShows />,
+      },
+      {
+        path: '/movies',
+        element: <Movies />,
+      },
+      {
+        path: '/movie-details',
+        element: <MoviesDetails />,
+      },
+      {
+        path: '/tvshows-details',
+        element: <TvShowsDetails />,
+      },
+    ],
+  },
+]);
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <TabContextProvider>
+        {/* <SearchProvider> */}
+        <RouterProvider router={router} />
+        {/* </SearchProvider> */}
+      </TabContextProvider>
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;

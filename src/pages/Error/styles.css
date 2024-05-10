@@ -1,0 +1,33 @@
+.main{
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main img{
+    width: 90vh;
+    min-width: 600px;
+    display: block;
+    margin-bottom: 2rem;
+    margin-top: -3rem;
+}
+
+.main h3{
+    margin-bottom: 0.5rem;
+}
+
+.main p{
+    line-height:1.5;
+    margin-top: 0%.5rem;
+    margin-bottom: 1rem;
+    color: #999;
+}
+
+.link {
+    color: green;
+    text-decoration: underline;
+    text-transform: capitalize;
+}
+
