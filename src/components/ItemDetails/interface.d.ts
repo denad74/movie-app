@@ -1,6 +1,6 @@
 export interface DetailsProps {
   mode: string;
-  id: number;
+  id: string;
 }
 
 export interface MovieDetails {

@@ -1,3 +1,6 @@
-export interface RouteError {
-  status: number;
+export interface ErrorData {
+  message: string;
+  response: {
+    status: number;
+  };
 }

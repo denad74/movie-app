@@ -1,28 +1,80 @@
 import React from 'react';
-import { DetailsProps, MovieDetails, TvShowDetails } from './interface';
-import { Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { fetchDataDetails } from '../../api';
+import { useNavigate } from 'react-router-dom';
+import { IoIosArrowBack } from 'react-icons/io';
+import { API_IMAGE_URL } from '../../constants/routes';
+import noImage from '../../assets/images/no-image.svg';
+import { DetailsProps } from './interface';
+import './styles.css';
+import Button from '../sherad/Button';
+import Spinner from '../sherad/Spinner';
+import ErrorPage from '../../pages/Error';
+import { useDetails } from '../../hooks/useDetails';
 
 const ItemDetails = ({ mode, id }: DetailsProps): JSX.Element => {
-  const { data } = useQuery<MovieDetails | TvShowDetails, unknown>({
-    queryKey: ['details', { type: mode, id: id }],
-    queryFn: () => fetchDataDetails({ queryKey: ['details', { type: mode, id: id }] }),
+  const navigate = useNavigate();
+  const {
+    data: items,
+    officialTrailers,
+    isLoading,
+    isError,
+    error,
+    isLoadingVideo,
+    isErrorVideo,
+    // errorVideo,
+  } = useDetails({
+    queryKey: ['movies', { type: mode, id: id }],
   });
   const itemMode = mode === 'movie' ? 'Movie' : 'TV Show';
+
+  if (isError) {
+    return (
+      <div className="container">
+        <ErrorPage error={error as { message: string; response: { status: number } } | undefined} />
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="container">
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <div className="container">
       <div className="home-header">
-        <Link to="/">Back</Link>
+        <Button onClick={() => navigate(-1)} icons={<IoIosArrowBack />}>
+          Back
+        </Button>
       </div>
-      <div className="main">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${data?.backdrop_path}`}
-          alt={data?.title || data?.name}
-        />
-        <h3>{data?.title || data?.name}</h3>
-        <h4>{itemMode} overview</h4>
-        <p>{data?.overview}</p>
+      <div>
+        {officialTrailers?.length > 0 || isErrorVideo ? (
+          <div className="video-container">
+            {isLoadingVideo ? (
+              <div className="container">
+                <Spinner />
+              </div>
+            ) : (
+              <iframe
+                title="Trailer"
+                className="video-player"
+                src={`https://www.youtube.com/embed/${officialTrailers[0].key}`}
+                allowFullScreen
+              />
+            )}
+          </div>
+        ) : (
+          <img
+            className="details-img"
+            src={items?.backdrop_path ? `${API_IMAGE_URL}${items?.backdrop_path}` : noImage}
+            alt={items?.title || items?.name}
+          />
+        )}
+        <h3 className="details-heading">{items?.title || items?.name}</h3>
+        <h4 className="details-heading">{itemMode} overview</h4>
+        <p className="details-heading">{items?.overview}</p>
       </div>
     </div>
   );

@@ -20,7 +20,6 @@ export const fetchDataList = async ({ queryKey }: Key) => {
   let url;
   const type = typeof queryKey[1] === 'object' ? queryKey[1].type : '';
   const query = typeof queryKey[1] === 'object' ? queryKey[1].searchQuery : '';
-  console.log('asa', query);
   url = `https://api.themoviedb.org/3/${type}/top_rated?include_adult=false&language=en-US`;
 
   if (query) {
@@ -56,7 +55,6 @@ export const fetchDataList = async ({ queryKey }: Key) => {
 };
 
 export const fetchDataDetails = async ({ queryKey }: KeyDetails) => {
-  console.log(queryKey);
   const options = {
     method: 'GET',
     headers: {
@@ -72,7 +70,7 @@ export const fetchDataDetails = async ({ queryKey }: KeyDetails) => {
   // const query = queryKey[1].searchTerm;
 
   const url = `https://api.themoviedb.org/3/${type}/${id}?language=en-US&`;
-  console.log('KKK', url);
+  console.log(url, 'dddd');
   // if (query) {
   //   url = `https://api.themoviedb.org/3/search/${type}?query=${query}&include_adult=false&language=en-US&page=${pageParam}`;
   // }

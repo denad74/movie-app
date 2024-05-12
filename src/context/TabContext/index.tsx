@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { TabContextProps, TabContextProviderProps } from './interfaces';
-import { defaultTabProps } from '../../constants/defaults/states';
+import { defaultTabProps } from '../../constants/states';
 
 const TabContext = createContext<TabContextProps>(defaultTabProps);
 

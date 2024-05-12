@@ -3,36 +3,42 @@ import React from 'react';
 import Card from '../sherad/Card';
 import './styles.css';
 import { useAll } from '../../hooks/useAll';
-interface Mode {
-  mode: string;
-}
+import { useSearch } from '../../context/SearchContext/useSearch';
+import ErrorPage from '../../pages/Error';
+import Spinner from '../sherad/Spinner';
+import { Mode } from './interface';
 
 const ContentGrid = ({ mode }: Mode): JSX.Element => {
-  const { items } = useAll({ queryKey: ['movies', { type: mode }] });
-  console.log(items);
-  // const { searchTerm } = useSearch();
-  // const [searchParams] = useSearchParams();
-  // const searchQuery = searchParams.get('query');
-  // console.log(searchQuery, 'lll');
-  // const { data } = useQuery<Movies[] | TvShows[], unknown>({
-  //   queryKey: ['movies', { type: mode }],
-  //   queryFn: () => fetchDataList({ queryKey: ['movies', { type: mode, searchQuery: searchTerm }] }),
-  // });
-  // if (status === 'pending') {
-  //   return <Loading />;
-  // }
-  // if (status === 'error') {
-  //   return <Error error={error} backdrop='failed to fetch data' />;
-  // }
+  const { searchQuery } = useSearch();
+  const { items, isLoading, isError, error } = useAll({
+    queryKey: ['movies', { type: mode, searchQuery: searchQuery }],
+  });
+
+  if (isError) {
+    return (
+      <div className="container">
+        <ErrorPage error={error as { message: string; response: { status: number } } | undefined} />
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="container">
+        <Spinner />
+      </div>
+    );
+  }
   const topTenItems = items?.slice(0, 10);
+
   return (
-    <div className="main">
-      {topTenItems ? (
+    <div className="grid-container">
+      {topTenItems && topTenItems.length > 0 ? (
         topTenItems?.map((item) => {
           return <Card item={item} key={item?.id} mode={mode} />;
         })
       ) : (
-        <p>No data</p>
+        <h2>No data found!</h2>
       )}
     </div>
   );

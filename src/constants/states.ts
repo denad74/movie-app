@@ -1,4 +1,4 @@
-import { TabContextProps } from '../../context/TabContext/interfaces';
+import { TabContextProps } from '../context/TabContext/interfaces';
 
 export const defaultTabProps: TabContextProps = {
   selectedTab: 'tvShows',

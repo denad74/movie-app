@@ -13,15 +13,15 @@ const Input = ({ placeholder, type }: InputProps): JSX.Element => {
   };
   return (
     <>
-      <form>
-        <input
-          className="searchForm"
-          type={type}
-          placeholder={placeholder}
-          value={searchTerm}
-          onChange={handleInputChange}
-        />
-      </form>
+      {/* <form> */}
+      <input
+        className="searchForm"
+        type={type}
+        placeholder={placeholder}
+        value={searchTerm}
+        onChange={handleInputChange}
+      />
+      {/* </form> */}
     </>
   );
 };
