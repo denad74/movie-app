@@ -139,7 +139,7 @@ button:disabled {
   border: 1px solid var(--grey-300);
   color: var(--text-color);
 }
- 
+
 ::placeholder {
   font-family: inherit;
   color: var(--grey-400);

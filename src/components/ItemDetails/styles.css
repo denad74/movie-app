@@ -1,11 +1,11 @@
 .details-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 .details-img {
-    object-fit: cover;
-    width: 100%;
-    display: block;
+  object-fit: cover;
+  width: 100%;
+  display: block;
 }
 .details-heading {
   padding-top: 0.5rem;

@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
-import ContentGrid from '../../components/ContentGrid';
+import { useEffect } from 'react';
 import { useTab } from '../../context/TabContext/useTab';
+import ContentGrid from '../../components/ContentGrid';
 
 const TvShows = () => {
   const { selectedTab, setSelectedTab } = useTab();
   useEffect(() => {
     setSelectedTab('tv');
-  }, []);
+  }, [setSelectedTab]);
+
   return (
-    <div>
+    <>
       <ContentGrid mode={selectedTab} />
-    </div>
+    </>
   );
 };
 

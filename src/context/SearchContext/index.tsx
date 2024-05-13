@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { SearchContextProviderProps, SearchContextType } from './interfaces';
 
 export const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -7,7 +7,7 @@ export const SearchProvider = ({ children }: SearchContextProviderProps): JSX.El
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>();
   const [loading, setLoading] = useState(false);
-
+  // debouncing request for 1s and stop request if is less then 3 char
   useEffect(() => {
     let debounceTimer: NodeJS.Timeout;
     if (searchTerm.length >= 3) {

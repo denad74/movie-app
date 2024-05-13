@@ -1,17 +1,16 @@
-import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { TabContextProvider } from './context/TabContext';
 import { SearchProvider } from './context/SearchContext';
-// components
+
 import HomeLayout from './pages/HomeLayout';
 import ErrorPage from './pages/Error';
 import TvShows from './pages/TvShows';
 import Movies from './pages/Movies';
 import MoviesTvDetails from './pages/MoviesDetails';
-//queryClient
+
 const queryClient = new QueryClient();
-//router
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,7 +32,7 @@ const router = createBrowserRouter([
     element: <MoviesTvDetails />,
   },
 ]);
-//Component
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
