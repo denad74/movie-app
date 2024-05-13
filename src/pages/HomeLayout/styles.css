@@ -23,7 +23,12 @@
   box-shadow: var(--shadow-3);
 }
 
-.active {
+.link.active {
   background-color: var(--primary-100);
+  color: var(--text-color);
+}
+
+.link.pending {
+  background-color: red;
   color: var(--text-color);
 }

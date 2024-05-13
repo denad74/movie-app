@@ -12,11 +12,18 @@ const HomeLayout = (): JSX.Element => {
     <div className='container' data-testid='home-layout'>
       <div className='home-header'>
         <div className='home-header__buttons'>
-          <NavLink className={`link ${(isActive: boolean) => (isActive ? 'active' : '')}`} to='/'>
+          <NavLink
+            className={({ isActive, isPending }) =>
+              isPending ? 'pending link' : isActive ? 'active link' : 'link'
+            }
+            to='/'
+          >
             Tv shows
           </NavLink>
           <NavLink
-            className={`link ${(isActive: boolean) => (isActive ? 'active' : '')}`}
+            className={({ isActive, isPending }) =>
+              isPending ? 'pending link' : isActive ? 'active link' : 'link'
+            }
             to='/movies'
           >
             Movies
