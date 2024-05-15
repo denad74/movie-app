@@ -31,7 +31,7 @@ const ContentGrid = ({ mode }: Mode): JSX.Element => {
   const topTenItems = items?.slice(0, 10);
 
   return (
-    <div className='grid-container'>
+    <div className='grid-container' data-testid='tv-shows'>
       {topTenItems && topTenItems.length > 0 ? (
         topTenItems?.map((item) => {
           return <Card item={item} key={item?.id} mode={mode} />;

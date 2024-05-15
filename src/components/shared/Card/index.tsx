@@ -11,12 +11,13 @@ const Card = ({ item, mode }: CardProps): JSX.Element => {
   const handleCardClick = () => navigate('/item-details', { state: { mode: mode, id: item.id } });
 
   return (
-    <div className='card' onClick={() => handleCardClick()}>
+    <div className='card' onClick={() => handleCardClick()} data-testid='card'>
       <img
+        data-testid='img'
         src={item.backdrop_path ? `${API_IMAGE_URL}${item.backdrop_path}` : noImage}
         alt={item.title || item.name}
       />
-      <h2>{item.title || item.name}</h2>
+      <h2 data-testid='heading'>{item.title || item.name}</h2>
     </div>
   );
 };

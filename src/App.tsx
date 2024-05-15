@@ -36,11 +36,11 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <TabContextProvider>
-        <SearchProvider>
+      <SearchProvider>
+        <TabContextProvider>
           <RouterProvider router={router} />
-        </SearchProvider>
-      </TabContextProvider>
+        </TabContextProvider>
+      </SearchProvider>
     </QueryClientProvider>
   );
 };
