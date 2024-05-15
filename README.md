@@ -49,3 +49,5 @@ You can then deploy the contents of the build directory to your web server or ho
 ### Test app
 
 To run test in terminal run npm test or npm test [component relative path]
+
+deployed on https://movie-app-peach-phi.vercel.app/
